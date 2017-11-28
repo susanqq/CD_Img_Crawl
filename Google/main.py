@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#crawl celebrities with name list and key words
+#crawl cd cover image with name list and key words
 import logging
 import sys
 import os
