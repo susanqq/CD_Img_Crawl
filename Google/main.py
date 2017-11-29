@@ -34,13 +34,20 @@ def main(args):
 
     for name in open(args.l):
         t = name.strip()
-        print('the fetch item name is', t)
+        print('the fetch name is', t)
         folder = 'images/' + t
-        if not os.path.exists(folder):
-            os.makedirs(folder)
         keyword = 'CD' + ' ' + t
-        print('the keyword is', keyword)        
-        test_google(keyword,folder,count)
+        print('the keyword is', keyword)
+        if not os.path.exists(folder):
+          # avoid too long folder name
+            try:
+                os.makedirs(folder)       
+            except Exception as e:
+                print('makeing folder error',e)
+                folder = folder.split(':')[0]
+                if not os.path.exists(folder):
+                    os.makedirs(folder)
+            test_google(keyword,folder,count)
 
 if __name__ == '__main__':
     parse = argparse.ArgumentParser(description='Crawling image based on person name')
